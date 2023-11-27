@@ -22,7 +22,7 @@ import AcUnitIcon from "@mui/icons-material/AcUnit";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 import IcecreamIcon from "@mui/icons-material/Icecream";
 import LunchDiningIcon from "@mui/icons-material/LunchDining";
-import TapasIcon from "@mui/icons-material/Tapas";
+// import TapasIcon from "@mui/icons-material/Tapas";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import CakeIcon from "@mui/icons-material/Cake";
