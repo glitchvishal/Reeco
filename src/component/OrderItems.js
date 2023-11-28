@@ -13,8 +13,6 @@ import { SET_DIALOG_OPEN, UPDATE_ORDER_STATUS } from "../redux/actions";
 const OrderItem = ({ item }) => {
   const dispatch = useDispatch();
   const { dialogOpen } = useSelector((state) => state);
-  const [closeIconColor, setCloseIconColor] = useState("default");
-  const [checkIconColor, setCheckIconColor] = useState("default");
   const handleOpenConfirmationDialog = () => {
     dispatch({ type: SET_DIALOG_OPEN, payload: true });
   };
