@@ -1,6 +1,6 @@
 // ConfirmationDialog.js
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Dialog,
   DialogActions,
@@ -10,16 +10,16 @@ import {
   Button,
 } from "@material-ui/core";
 import { SET_DIALOG_OPEN, UPDATE_ORDER_STATUS } from "../redux/actions";
-const ConfirmationDialog = ({ open, onClose }) => {
+const ConfirmationDialog = ({ open, onClose, item }) => {
   const dispatch = useDispatch();
-
+  const { currentItem } = useSelector((state) => state);
   const handleYesClick = () => {
     console.log("Status: Missing - Urgently");
     dispatch({
       type: UPDATE_ORDER_STATUS,
-      payload: { text: "missing - urgent", id: 1 },
+      payload: { text: "missing - urgent", id: currentItem },
     });
-    dispatch({ type: SET_DIALOG_OPEN, payload: true });
+    // dispatch({ type: SET_DIALOG_OPEN, payload: true });
 
     onClose();
   };
@@ -28,9 +28,9 @@ const ConfirmationDialog = ({ open, onClose }) => {
     console.log("Status: Missing");
     dispatch({
       type: UPDATE_ORDER_STATUS,
-      payload: { text: "missing", id: 1 },
+      payload: { text: "missing", id: currentItem },
     });
-    dispatch({ type: SET_DIALOG_OPEN, payload: true });
+    // dispatch({ type: SET_DIALOG_OPEN, payload: true });
     onClose();
   };
   return (
@@ -42,10 +42,10 @@ const ConfirmationDialog = ({ open, onClose }) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleNoClick} color="primary">
+        <Button onClick={() => handleNoClick()} color="primary">
           No
         </Button>
-        <Button onClick={handleYesClick} color="primary" autoFocus>
+        <Button onClick={() => handleYesClick()} color="primary" autoFocus>
           Yes
         </Button>
       </DialogActions>

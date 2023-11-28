@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { TableRow, TableCell, Button } from "@material-ui/core";
 import {
   Edit as EditIcon,
@@ -13,15 +13,14 @@ import { SET_DIALOG_OPEN, UPDATE_ORDER_STATUS } from "../redux/actions";
 const OrderItem = ({ item }) => {
   const dispatch = useDispatch();
   const { dialogOpen } = useSelector((state) => state);
-  const handleOpenConfirmationDialog = () => {
-    dispatch({ type: SET_DIALOG_OPEN, payload: true });
+  const handleOpenConfirmationDialog = (id) => {
+    dispatch({ type: SET_DIALOG_OPEN, payload: { dialog: true, id: id } });
   };
-  const handleApproveStatus = () => {
-    // Dispatch an action to update the status to "approved"
+  const handleApproveStatus = (id) => {
     dispatch({
       type: UPDATE_ORDER_STATUS, // You should define this action type in your Redux actions
-      payload: { text: "approved", id: 1 },
-      // payload: { id: item.id, status: "approved" },
+      // payload: { text: "approved", item },
+      payload: { id: id, text: "approved" },
     });
   };
   const getChipColor = () => {
@@ -38,28 +37,33 @@ const OrderItem = ({ item }) => {
         return "default"; // You can set a default color if needed
     }
   };
-  const getIconColor = () => {
+  const getIconColor = (item) => {
     if (item.status === "approved") {
       return "green";
     } else {
-      // Handle other status conditions if needed
-      return "default";
+      return "black";
     }
   };
-  const getIconColorMissing = () => {
+  const getIconColorMissing = (item) => {
     if (item.status === "missing") {
       return "orange";
     } else if (item.status === "missing - urgent") {
       return "red";
     } else if (item.status === "approved") {
-      return "default";
+      return "black";
     }
   };
+  useEffect(() => {}, [item]);
   return (
     <>
       <ConfirmationDialog
         open={dialogOpen}
-        onClose={() => dispatch({ type: SET_DIALOG_OPEN, payload: false })}
+        onClose={() =>
+          dispatch({
+            type: SET_DIALOG_OPEN,
+            payload: { dialog: false, id: null },
+          })
+        }
       />
       <TableRow>
         <TableCell>
@@ -79,20 +83,21 @@ const OrderItem = ({ item }) => {
             label={item.status}
             style={{
               color: "white",
-              backgroundColor:
-                getChipColor() === "default" ? "" : getChipColor(),
+              backgroundColor: getChipColor(item.status),
             }}
           />
         </TableCell>
         <TableCell>
           <Button startIcon={<EditIcon />}></Button>
           <Button
-            onClick={handleOpenConfirmationDialog}
-            startIcon={<CloseIcon style={{ color: getIconColorMissing() }} />}
+            onClick={() => handleOpenConfirmationDialog(item.id)}
+            startIcon={
+              <CloseIcon style={{ color: getIconColorMissing(item) }} />
+            }
           ></Button>
           <Button
-            onClick={handleApproveStatus}
-            startIcon={<CheckIcon style={{ color: getIconColor() }} />}
+            onClick={() => handleApproveStatus(item.id)}
+            startIcon={<CheckIcon style={{ color: getIconColor(item) }} />}
           ></Button>
         </TableCell>
       </TableRow>

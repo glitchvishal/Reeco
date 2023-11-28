@@ -22,9 +22,11 @@ const issueReducer = (state = initialIssueState, action) => {
 const orderReducer = (state = initialOrderState, action) => {
   switch (action.type) {
     case SET_DIALOG_OPEN:
+      console.log(action.payload);
       return {
         ...state,
-        dialogOpen: action.payload,
+        dialogOpen: action.payload.dialog,
+        currentItem: action.payload.id,
       };
     case APPROVE_ORDER:
       return {
@@ -43,7 +45,7 @@ const orderReducer = (state = initialOrderState, action) => {
       console.log(action.payload);
       const newItems = state.order.items.map((item, index) => {
         let t = item;
-        if (index === action.payload.id) {
+        if (item.id === action.payload.id) {
           t.status = action.payload.text;
           return t;
         }

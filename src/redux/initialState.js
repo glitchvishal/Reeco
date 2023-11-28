@@ -12,4 +12,5 @@ export const initialOrderState = {
     status: "Awaiting your approval",
   },
   dialogOpen: false,
+  currentItem: null,
 };
