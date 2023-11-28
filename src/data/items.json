@@ -16,5 +16,23 @@
     "quantity": 3,
     "total": 45,
     "status": "Pending"
+  },
+  {
+    "id": 3,
+    "productName": "Product 3",
+    "brand": "Brand 3",
+    "price": 25,
+    "quantity": 1,
+    "total": 25,
+    "status": "Pending"
+  },
+  {
+    "id": 4,
+    "productName": "Product 4",
+    "brand": "Brand 4",
+    "price": 12,
+    "quantity": 5,
+    "total": 60,
+    "status": "Pending"
   }
 ]
