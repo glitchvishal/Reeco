@@ -1,5 +1,5 @@
 // OrderPage.js
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Container,
   Button,
@@ -13,7 +13,7 @@ import {
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { setOrderItemsAction } from "../redux/actions";
+// import { setOrderItemsAction } from "../redux/actions";
 import OrderList from "./OrderList";
 import Header from "./Header";
 import ConfirmationDialog from "./ConfirmationDialog";
@@ -77,20 +77,6 @@ const OrderPage = () => {
     color: "black",
   }));
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/data/items.json"); // Update the path
-        const items = await response.json();
-        dispatch(setOrderItemsAction(items));
-      } catch (error) {
-        console.error("Error fetching items:", error);
-      }
-    };
-
-    fetchData();
-  }, [dispatch]);
-
   return (
     <>
       <Header />
@@ -142,25 +128,19 @@ const OrderPage = () => {
             spacing={2}
           >
             <Item>
-              <Typography variant="body1" color="gray">
-                Supplier:
-              </Typography>{" "}
+              <Typography variant="body1">Supplier:</Typography>{" "}
               <Typography variant="h6">
                 <b>{order.supplier}</b>
               </Typography>
             </Item>
             <Item>
-              <Typography variant="body1" color="gray">
-                Shipping date:{" "}
-              </Typography>
+              <Typography variant="body1">Shipping date: </Typography>
               <Typography variant="h6">
                 <b>{order.shippingDate}</b>
               </Typography>
             </Item>
             <Item>
-              <Typography variant="body1" color="gray">
-                Total:
-              </Typography>
+              <Typography variant="body1">Total:</Typography>
               <Typography variant="h6">
                 <b>{order.total}</b>
               </Typography>
@@ -191,21 +171,17 @@ const OrderPage = () => {
               </Typography>
             </Item>
             <Item>
-              <Typography variant="body1" color="gray">
-                Department
-              </Typography>
+              <Typography variant="body1">Department</Typography>
               <Typography variant="h6">
                 <b>300-444-678</b>
               </Typography>
             </Item>
             <Item>
-              <Typography variant="body1" color="gray">
-                Status
-              </Typography>
+              <Typography variant="body1">Status</Typography>
               <Typography
                 variant="h6"
                 style={{
-                  color: order.status === "Approved" ? "green" : "orange",
+                  color: order.status === "Approved" ? "green" : "black",
                 }}
               >
                 <b>{order.status}</b>{" "}
@@ -233,7 +209,6 @@ const OrderPage = () => {
           <Button
             variant="contained"
             color="primary"
-            borderRadius="50%"
             onClick={handleOpenConfirmationDialog}
           >
             Add item

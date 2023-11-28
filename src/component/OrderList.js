@@ -19,12 +19,12 @@ const OrderList = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Product name</TableCell>
-            <TableCell>Brand</TableCell>
-            <TableCell>Price</TableCell>
-            <TableCell>Quantity</TableCell>
-            <TableCell>Total</TableCell>
-            <TableCell>Status</TableCell>
+            <TableCell align="center">Product name</TableCell>
+            <TableCell align="center">Brand</TableCell>
+            <TableCell align="center">Price</TableCell>
+            <TableCell align="center">Quantity</TableCell>
+            <TableCell align="center">Total</TableCell>
+            <TableCell align="left">Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
