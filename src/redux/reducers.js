@@ -4,6 +4,7 @@ import {
   APPROVE_ORDER,
   SET_ISSUE_DIALOG_OPEN,
   SET_ORDER_ITEMS,
+  UPDATE_ORDER_STATUS,
 } from "./actions";
 import { initialIssueState, initialOrderState } from "./initialState";
 
@@ -35,6 +36,23 @@ const orderReducer = (state = initialOrderState, action) => {
       return {
         ...state,
         items: action.payload,
+      };
+    case UPDATE_ORDER_STATUS:
+      console.log(action.payload);
+      const newItems = state.order.items.map((item, index) => {
+        let t = item;
+        if (index === action.payload.id) {
+          t.status = action.payload.text;
+          return t;
+        }
+        return item;
+      });
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          items: [...newItems],
+        },
       };
     default:
       return state;

@@ -9,24 +9,28 @@ import {
   DialogTitle,
   Button,
 } from "@material-ui/core";
-import { updateOrderStatusAction } from "../redux/actions";
+import { SET_DIALOG_OPEN, UPDATE_ORDER_STATUS } from "../redux/actions";
 const ConfirmationDialog = ({ open, onClose }) => {
   const dispatch = useDispatch();
 
   const handleYesClick = () => {
-    // Dispatch an action to update the order status to "missing - urgently"
     console.log("Status: Missing - Urgently");
-    dispatch(updateOrderStatusAction("missing - urgently"));
+    dispatch({
+      type: UPDATE_ORDER_STATUS,
+      payload: { text: "missing - urgent", id: 1 },
+    });
+    dispatch({ type: SET_DIALOG_OPEN, payload: true });
 
-    // Close the dialog
     onClose();
   };
 
   const handleNoClick = () => {
     console.log("Status: Missing");
-    // Dispatch an action to update the order status to "missing"
-    dispatch(updateOrderStatusAction("missing"));
-    // Close the dialog
+    dispatch({
+      type: UPDATE_ORDER_STATUS,
+      payload: { text: "missing", id: 1 },
+    });
+    dispatch({ type: SET_DIALOG_OPEN, payload: true });
     onClose();
   };
   return (

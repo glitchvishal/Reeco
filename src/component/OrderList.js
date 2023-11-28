@@ -24,6 +24,7 @@ const OrderList = () => {
             <TableCell align="center">Price</TableCell>
             <TableCell align="center">Quantity</TableCell>
             <TableCell align="center">Total</TableCell>
+            <TableCell align="right"></TableCell>
             <TableCell align="left">Status</TableCell>
           </TableRow>
         </TableHead>
