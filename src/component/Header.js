@@ -17,9 +17,6 @@ const Header = () => {
     <AppBar position="static">
       <Container>
         <Toolbar>
-          {/* <IconButton edge="start" color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton> */}
           <Stack direction="row" style={{ flexGrow: "1" }}>
             <Typography variant="h5" style={{ marginRight: "30px" }}>
               <b>RecoCo</b>
@@ -34,7 +31,7 @@ const Header = () => {
               Analytics
             </Typography>
           </Stack>
-          <LocalGroceryStoreIcon style={{ marginRight: "8px" }} />
+          <LocalGroceryStoreIcon style={{ marginRight: "30px" }} />
           <Typography
             color="inherit"
             style={{ display: "flex", alignItems: "center" }}

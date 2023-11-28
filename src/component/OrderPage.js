@@ -67,6 +67,9 @@ const OrderPage = () => {
     ...theme.typography.body1,
     padding: theme.spacing(1),
     // textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     width: "180px",
     color: "black",
   }));
