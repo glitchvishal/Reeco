@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "img": "/Apple Green Smith.png",
     "productName": "Product 1",
     "brand": "Brand 1",
     "price": 10,
@@ -10,6 +11,7 @@
   },
   {
     "id": 2,
+    "img": "/Apple Green Smith.png",
     "productName": "Product 2",
     "brand": "Brand 2",
     "price": 15,
@@ -19,6 +21,7 @@
   },
   {
     "id": 3,
+    "img": "/Apple Green Smith.png",
     "productName": "Product 3",
     "brand": "Brand 3",
     "price": 25,
@@ -28,6 +31,7 @@
   },
   {
     "id": 4,
+    "img": "/Apple Green Smith.png",
     "productName": "Product 4",
     "brand": "Brand 4",
     "price": 12,

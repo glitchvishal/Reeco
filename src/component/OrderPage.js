@@ -16,8 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 // import { setOrderItemsAction } from "../redux/actions";
 import OrderList from "./OrderList";
 import Header from "./Header";
-import ConfirmationDialog from "./ConfirmationDialog";
-import { APPROVE_ORDER, SET_DIALOG_OPEN } from "../redux/actions";
+// import ConfirmationDialog from "./ConfirmationDialog";
+import { APPROVE_ORDER } from "../redux/actions";
 // import { Add as AddIcon } from "@material-ui/icons";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
@@ -57,9 +57,6 @@ const OrderPage = () => {
     console.log("After dispatch:", order);
   };
 
-  const handleOpenConfirmationDialog = () => {
-    dispatch({ type: SET_DIALOG_OPEN, payload: true });
-  };
   const handleSearch = (searchTerm) => {
     // Implement your search logic here
     console.log("Searching for:", searchTerm);
@@ -80,10 +77,6 @@ const OrderPage = () => {
   return (
     <>
       <Header />
-      <ConfirmationDialog
-        open={dialogOpen}
-        onClose={() => dispatch({ type: SET_DIALOG_OPEN, payload: false })}
-      />
       <Box
         style={{
           marginBottom: "20px",
@@ -206,11 +199,7 @@ const OrderPage = () => {
             onChange={(e) => handleSearch(e.target.value)}
           />
 
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleOpenConfirmationDialog}
-          >
+          <Button variant="contained" color="primary">
             Add item
           </Button>
         </Box>

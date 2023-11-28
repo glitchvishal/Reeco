@@ -19,7 +19,8 @@ const OrderList = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell align="center">Product name</TableCell>
+            <TableCell></TableCell>
+            <TableCell align="left">Product name</TableCell>
             <TableCell align="center">Brand</TableCell>
             <TableCell align="center">Price</TableCell>
             <TableCell align="center">Quantity</TableCell>

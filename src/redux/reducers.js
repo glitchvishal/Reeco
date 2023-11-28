@@ -5,6 +5,8 @@ import {
   SET_ISSUE_DIALOG_OPEN,
   SET_ORDER_ITEMS,
   UPDATE_ORDER_STATUS,
+  SET_EDIT_PRODUCT,
+  UPDATE_PRODUCT,
 } from "./actions";
 import { initialIssueState, initialOrderState } from "./initialState";
 
@@ -53,6 +55,17 @@ const orderReducer = (state = initialOrderState, action) => {
           ...state.order,
           items: [...newItems],
         },
+      };
+    case SET_EDIT_PRODUCT:
+      return {
+        ...state,
+        editProduct: action.payload,
+      };
+    case UPDATE_PRODUCT:
+      // Assuming payload is the updated product
+      return {
+        ...state,
+        // Update the products array or relevant part of the state
       };
     default:
       return state;
