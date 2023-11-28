@@ -17,7 +17,7 @@ import OrderList from "./OrderList";
 import Header from "./Header";
 import ConfirmationDialog from "./ConfirmationDialog";
 import { APPROVE_ORDER, SET_DIALOG_OPEN } from "../redux/actions";
-import { Add as AddIcon } from "@material-ui/icons";
+// import { Add as AddIcon } from "@material-ui/icons";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 import IcecreamIcon from "@mui/icons-material/Icecream";
@@ -80,7 +80,6 @@ const OrderPage = () => {
       />
       <Box
         style={{
-          marginTop: "20px",
           marginBottom: "20px",
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
           padding: "20px",
@@ -97,7 +96,9 @@ const OrderPage = () => {
               marginTop: "20px",
             }}
           >
-            <Typography variant="h5">Order {order.id}</Typography>
+            <Typography variant="h5">
+              <b>Order {order.id}</b>
+            </Typography>
             <Stack spacing={2} direction="row">
               <Button variant="outlined" color="primary">
                 Back
@@ -114,7 +115,7 @@ const OrderPage = () => {
         </Container>
       </Box>
       <Container>
-        <Box style={{ width: "100%" }}>
+        <Box style={{ width: "100%", marginTop: "30px", marginBottom: "30px" }}>
           <Stack
             direction="row"
             divider={<Divider orientation="vertical" flexItem />}
@@ -207,9 +208,10 @@ const OrderPage = () => {
           <Button
             variant="contained"
             color="primary"
+            borderRadius="50%"
             onClick={handleOpenConfirmationDialog}
           >
-            <AddIcon /> Add item
+            Add item
           </Button>
         </Box>
 
