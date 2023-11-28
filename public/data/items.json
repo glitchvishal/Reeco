@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "productName": "Product 1",
+    "brand": "Brand 1",
+    "price": 10,
+    "quantity": 2,
+    "total": 20,
+    "status": "Pending"
+  },
+  {
+    "id": 2,
+    "productName": "Product 2",
+    "brand": "Brand 2",
+    "price": 15,
+    "quantity": 3,
+    "total": 45,
+    "status": "Pending"
+  }
+]

@@ -3,6 +3,7 @@ import {
   SET_DIALOG_OPEN,
   APPROVE_ORDER,
   SET_ISSUE_DIALOG_OPEN,
+  SET_ORDER_ITEMS,
 } from "./actions";
 import { initialIssueState, initialOrderState } from "./initialState";
 
@@ -29,6 +30,11 @@ const orderReducer = (state = initialOrderState, action) => {
           ...state.order,
           status: "Approved",
         },
+      };
+    case SET_ORDER_ITEMS:
+      return {
+        ...state,
+        items: action.payload,
       };
     default:
       return state;

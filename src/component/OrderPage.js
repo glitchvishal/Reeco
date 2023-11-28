@@ -1,5 +1,5 @@
 // OrderPage.js
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Container,
   Button,
@@ -13,6 +13,7 @@ import {
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
+import { setOrderItemsAction } from "../redux/actions";
 import OrderList from "./OrderList";
 import Header from "./Header";
 import ConfirmationDialog from "./ConfirmationDialog";
@@ -51,7 +52,9 @@ const OrderPage = () => {
   const { order, dialogOpen } = useSelector((state) => state);
 
   const handleApproveOrder = () => {
+    console.log("Before dispatch:", order);
     dispatch({ type: APPROVE_ORDER });
+    console.log("After dispatch:", order);
   };
 
   const handleOpenConfirmationDialog = () => {
@@ -73,6 +76,20 @@ const OrderPage = () => {
     width: "180px",
     color: "black",
   }));
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/data/items.json"); // Update the path
+        const items = await response.json();
+        dispatch(setOrderItemsAction(items));
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
 
   return (
     <>
@@ -185,8 +202,13 @@ const OrderPage = () => {
               <Typography variant="body1" color="gray">
                 Status
               </Typography>
-              <Typography variant="h6">
-                <b>Awaiting your approval</b>
+              <Typography
+                variant="h6"
+                style={{
+                  color: order.status === "Approved" ? "green" : "orange",
+                }}
+              >
+                <b>{order.status}</b>{" "}
               </Typography>
             </Item>
           </Stack>
