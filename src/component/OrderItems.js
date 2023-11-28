@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TableRow, TableCell, Button } from "@material-ui/core";
 import {
   Edit as EditIcon,
@@ -13,6 +13,8 @@ import { SET_DIALOG_OPEN, UPDATE_ORDER_STATUS } from "../redux/actions";
 const OrderItem = ({ item }) => {
   const dispatch = useDispatch();
   const { dialogOpen } = useSelector((state) => state);
+  const [closeIconColor, setCloseIconColor] = useState("default");
+  const [checkIconColor, setCheckIconColor] = useState("default");
   const handleOpenConfirmationDialog = () => {
     dispatch({ type: SET_DIALOG_OPEN, payload: true });
   };
@@ -36,6 +38,23 @@ const OrderItem = ({ item }) => {
         return "green";
       default:
         return "default"; // You can set a default color if needed
+    }
+  };
+  const getIconColor = () => {
+    if (item.status === "approved") {
+      return "green";
+    } else {
+      // Handle other status conditions if needed
+      return "default";
+    }
+  };
+  const getIconColorMissing = () => {
+    if (item.status === "missing") {
+      return "orange";
+    } else if (item.status === "missing - urgent") {
+      return "red";
+    } else if (item.status === "approved") {
+      return "default";
     }
   };
   return (
@@ -71,11 +90,11 @@ const OrderItem = ({ item }) => {
           <Button startIcon={<EditIcon />}></Button>
           <Button
             onClick={handleOpenConfirmationDialog}
-            startIcon={<CloseIcon />}
+            startIcon={<CloseIcon style={{ color: getIconColorMissing() }} />}
           ></Button>
           <Button
             onClick={handleApproveStatus}
-            startIcon={<CheckIcon />}
+            startIcon={<CheckIcon style={{ color: getIconColor() }} />}
           ></Button>
         </TableCell>
       </TableRow>
