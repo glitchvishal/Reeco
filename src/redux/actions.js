@@ -6,6 +6,7 @@ export const SET_ORDER_ITEMS = "SET_ORDER_ITEMS";
 export const UPDATE_ORDER_STATUS = "UPDATE_ORDER_STATUS";
 export const SET_EDIT_PRODUCT = "SET_EDIT_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const ADD_ITEM = "ADD_ITEM";
 
 export const approveOrderAction = () => ({
   type: APPROVE_ORDER,
@@ -26,4 +27,9 @@ export const setEditProduct = (product) => ({
 export const updateProduct = (updatedProduct) => ({
   type: UPDATE_PRODUCT,
   payload: updatedProduct,
+});
+
+export const addItemAction = (item) => ({
+  type: ADD_ITEM,
+  payload: item,
 });

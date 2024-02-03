@@ -7,6 +7,7 @@ import {
   UPDATE_ORDER_STATUS,
   SET_EDIT_PRODUCT,
   UPDATE_PRODUCT,
+  ADD_ITEM,
 } from "./actions";
 import { initialIssueState, initialOrderState } from "./initialState";
 
@@ -69,8 +70,16 @@ const orderReducer = (state = initialOrderState, action) => {
         ...state,
         // Update the products array or relevant part of the state
       };
+      case ADD_ITEM: // Add the case for adding an item
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          items: [...state.order.items, action.payload], // Append the new item to the existing items array
+        },
+      };
     default:
-      return state;
+      return state
   }
 };
 

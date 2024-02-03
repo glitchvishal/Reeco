@@ -28,6 +28,7 @@ import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import CakeIcon from "@mui/icons-material/Cake";
 import NightlifeIcon from "@mui/icons-material/Nightlife";
+import AddItemModal from "./AddItemModal";
 const BreadcrumbsItem = styled(Typography)(({ theme }) => ({
   cursor: "pointer",
   "&:hover": {
@@ -50,7 +51,15 @@ const Breadcrumbs = ({ crumbs }) => {
 const OrderPage = () => {
   const dispatch = useDispatch();
   const { order, dialogOpen } = useSelector((state) => state);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleAddItemClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   const handleApproveOrder = () => {
     console.log("Before dispatch:", order);
     dispatch({ type: APPROVE_ORDER });
@@ -60,6 +69,24 @@ const OrderPage = () => {
   const handleSearch = (searchTerm) => {
     // Implement your search logic here
     console.log("Searching for:", searchTerm);
+  };
+
+  // Define addItemAction
+  const addItemAction = (item) => {
+    return { type: 'ADD_ITEM', payload: item };
+  };
+
+  // Define newItem (this is just a placeholder, replace it with your actual logic to create a new item)
+  const newItem = {
+    name: 'New Item',
+    quantity: 1,
+    // Add other properties as needed
+  };
+
+  const handleAddItem = () => {
+    // Dispatch the addItemAction with the new item
+    console.log("Adding item")
+    dispatch(addItemAction(newItem));
   };
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -199,9 +226,10 @@ const OrderPage = () => {
             onChange={(e) => handleSearch(e.target.value)}
           />
 
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={handleAddItem}>
             Add item
           </Button>
+          <AddItemModal open={isModalOpen} handleClose={handleCloseModal} />
         </Box>
 
         <OrderList />
